@@ -6,4 +6,4 @@ The inspiratiion behind Sub.tle, besides the not so subtle name is manage and tr
 * React.js
 * Django REST Framework
 ### Wireframes
-![Wireframes](public/Untitled_Artwork.jpg)
+![Wireframes](Untitled_Artwork.jpg)
