@@ -17,10 +17,20 @@ const CreateUser = () => {
     const [reEntry, setReEntry] = useState('')
     const [validEntry, setValidEntry] = useState(false)
     const [reEntryFocus, setReEntryFocus] = useState(false)
-
     
     const userRef = useRef()
     const errRef = useRef()
+
+    useEffect(() => {
+        userRef.current.focus()
+    }, [])
+
+    useEffect(() => {
+        const result = USER_REGEX.test(newUser)
+        console.log(result)
+        console.log(newUser)
+        setValidName(result)
+    }, [newUser])
 
   return (
   <div>
