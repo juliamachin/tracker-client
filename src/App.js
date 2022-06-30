@@ -1,12 +1,14 @@
-import './App.css';
+import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import UserLogin from './Components/UserLogin/UserLogin';
+import UserLogin from "./Components/UserLogin/UserLogin";
+import CreateUser from "./Components/CreateUser/CreateUser";
 
 function App() {
   return (
     <div className="App">
       <Routes>
-      <Route path="/login" element={<UserLogin />} />
+        <Route path="/" element={<UserLogin />} />
+        <Route path="/newuser" element={<CreateUser />} />
       </Routes>
     </div>
   );
