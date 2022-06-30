@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import UserLogin from "./Components/UserLogin/UserLogin";
 import CreateUser from "./Components/CreateUser/CreateUser";
-import Calendar from "./Components/Calendar/Calendar";
+import MyCalendar from "./Components/MyCalendar/MyCalendar";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<UserLogin />} />
         <Route path="/newuser" element={<CreateUser />} />
-        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/mycalendar" element={<MyCalendar />} />
       </Routes>
     </div>
   );
