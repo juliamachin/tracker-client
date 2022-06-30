@@ -10,13 +10,13 @@ import axios from "../../api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/register";
+const REGISTER_URL = "/users/";
 
 const CreateUser = () => {
-  const [newUser, setNewUser] = useState("");
+  const [username, setUsername] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [validPass, setValidPass] = useState(false);
   const [passFocus, setPassFocus] = useState(false);
   const [reEntry, setReEntry] = useState("");
@@ -33,37 +33,34 @@ const CreateUser = () => {
   }, []);
 
   useEffect(() => {
-    const result = USER_REGEX.test(newUser);
+    const result = USER_REGEX.test(username);
     console.log(result);
-    console.log(newUser);
+    console.log(username);
     setValidName(result);
-  }, [newUser]);
+  }, [username]);
 
   useEffect(() => {
-    const result = USER_REGEX.test(newPassword);
-    console.log(result);
-    console.log(newPassword);
+    const result = USER_REGEX.test(password);
     setValidPass(result);
-    const match = newPassword === reEntry;
-    setValidEntry(reEntry);
-  }, [newPassword, reEntry]);
+    setValidEntry(password === reEntry);
+  }, [password, reEntry]);
 
   useEffect(() => {
     setErrorMsg("");
-  }, [newUser, newPassword, reEntry]);
+  }, [username, password, reEntry]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const v1 = USER_REGEX.test(newUser);
-    const v2 = PWD_REGEX.test(newPassword);
-    if (!v1 || !v2) {
-      setErrorMsg("Invalid Entry");
-      return;
-    }
+    // const v1 = USER_REGEX.test(username);
+    // const v2 = PWD_REGEX.test(password);
+    // if (!v1 || !v2) {
+    //   setErrorMsg("Invalid Entry");
+    //   return;
+    // }
     try {
       const response = await axios.post(
         REGISTER_URL,
-        JSON.stringify({ newUser, newPassword }),
+        JSON.stringify({ username, password }),
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
@@ -72,8 +69,8 @@ const CreateUser = () => {
 
       console.log(JSON.stringify(response?.data));
       setValid(true);
-      setNewUser("");
-      setNewPassword("");
+      setUsername("");
+      setPassword("");
       setReEntry("");
     } catch (error) {
       if (!error?.response) {
@@ -99,8 +96,8 @@ const CreateUser = () => {
         </p>
         <h1>Register</h1>
       </div>
-      <form>
-        <label>
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="username">
           New Username:
           <FontAwesomeIcon
             icon={faCheck}
@@ -108,7 +105,7 @@ const CreateUser = () => {
           />
           <FontAwesomeIcon
             icon={faTimes}
-            className={validName || !newUser ? "hide" : "invalid"}
+            className={validName || !username ? "hide" : "invalid"}
           />
           <input
             htmlFor="username"
@@ -116,7 +113,7 @@ const CreateUser = () => {
             className="username"
             ref={userRef}
             autoComplete="off"
-            onChange={(event) => setNewUser(event.target.value)}
+            onChange={(event) => setUsername(event.target.value)}
             required
             aria-invalid={validName ? "false" : "true"}
             aria-describedby="uidnote"
@@ -124,11 +121,12 @@ const CreateUser = () => {
             onBlur={() => setUserFocus(false)}
           />
         </label>
+        <br />
         <div>
           <p
             id="uidnote"
             className={
-              userFocus && newUser && !validName ? "instructions" : "offscreen"
+              userFocus && username && !validName ? "instructions" : "offscreen"
             }
           >
             <FontAwesomeIcon icon={faInfoCircle} />
@@ -147,13 +145,13 @@ const CreateUser = () => {
           />
           <FontAwesomeIcon
             icon={faTimes}
-            className={validPass || !newPassword ? "hide" : "invalid"}
+            className={validPass || !password ? "hide" : "invalid"}
           />
           <input
             type="password"
             id="password"
-            onChange={(e) => setNewPassword(e.target.value)}
-            value={newPassword}
+            onChange={(event) => setPassword(event.target.value)}
+            value={password}
             required
             aria-invalid={validPass ? "false" : "true"}
             aria-describedby="pwdnote"
@@ -161,6 +159,7 @@ const CreateUser = () => {
             onBlur={() => setPassFocus(false)}
           />
         </label>
+        <br />
         <label htmlFor="confirm_pwd">
           Confirm Password:
           <FontAwesomeIcon
@@ -171,18 +170,19 @@ const CreateUser = () => {
             icon={faTimes}
             className={validEntry || !reEntry ? "hide" : "invalid"}
           />
+          <input
+            type="password"
+            className="confirm_pwd"
+            onChange={(event) => setReEntry(event.target.value)}
+            value={reEntry}
+            required
+            aria-invalid={validEntry ? "false" : "true"}
+            aria-describedby="confirmnote"
+            onFocus={() => setReEntryFocus(true)}
+            onBlur={() => setReEntryFocus(false)}
+          />
         </label>
-        <input
-          type="password"
-          className="confirm_pwd"
-          onChange={(event) => setReEntry(event.target.value)}
-          value={reEntry}
-          required
-          aria-invalid={validEntry ? "false" : "true"}
-          aria-describedby="confirmnote"
-          onFocus={() => setReEntryFocus(true)}
-          onBlur={() => setReEntryFocus(false)}
-        />
+        <br />
         <p
           id="confirmnote"
           className={reEntryFocus && !validEntry ? "instructions" : "offscreen"}
@@ -196,6 +196,13 @@ const CreateUser = () => {
           name="Sign Up"
         />
       </form>
+      <p>
+        Already registered?
+        <br />
+        <span className="line">
+          <a href="http://localhost:3000/login">Sign In</a>
+        </span>
+      </p>
     </div>
   );
 };
