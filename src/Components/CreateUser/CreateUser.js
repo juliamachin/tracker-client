@@ -97,30 +97,28 @@ const CreateUser = () => {
         <h1>Register</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">
-          New Username:
-          <FontAwesomeIcon
-            icon={faCheck}
-            className={validName ? "valid" : "hide"}
-          />
-          <FontAwesomeIcon
-            icon={faTimes}
-            className={validName || !username ? "hide" : "invalid"}
-          />
-          <input
-            htmlFor="username"
-            type="text"
-            className="username"
-            ref={userRef}
-            autoComplete="off"
-            onChange={(event) => setUsername(event.target.value)}
-            required
-            aria-invalid={validName ? "false" : "true"}
-            aria-describedby="uidnote"
-            onFocus={() => setUserFocus(true)}
-            onBlur={() => setUserFocus(false)}
-          />
-        </label>
+        <label htmlFor="username">New Username:</label>
+        <FontAwesomeIcon
+          icon={faCheck}
+          className={validName ? "valid" : "hide"}
+        />
+        <FontAwesomeIcon
+          icon={faTimes}
+          className={validName || !username ? "hide" : "invalid"}
+        />
+        <input
+          htmlFor="username"
+          type="text"
+          className="username"
+          ref={userRef}
+          autoComplete="off"
+          onChange={(event) => setUsername(event.target.value)}
+          required
+          aria-invalid={validName ? "false" : "true"}
+          aria-describedby="uidnote"
+          onFocus={() => setUserFocus(true)}
+          onBlur={() => setUserFocus(false)}
+        />
         <br />
         <div>
           <p
@@ -137,51 +135,47 @@ const CreateUser = () => {
             Letters, numbers, underscores, hyphens allowed.
           </p>
         </div>
-        <label htmlFor="password">
-          Password:
-          <FontAwesomeIcon
-            icon={faCheck}
-            className={validPass ? "valid" : "hide"}
-          />
-          <FontAwesomeIcon
-            icon={faTimes}
-            className={validPass || !password ? "hide" : "invalid"}
-          />
-          <input
-            type="password"
-            id="password"
-            onChange={(event) => setPassword(event.target.value)}
-            value={password}
-            required
-            aria-invalid={validPass ? "false" : "true"}
-            aria-describedby="pwdnote"
-            onFocus={() => setPassFocus(true)}
-            onBlur={() => setPassFocus(false)}
-          />
-        </label>
+        <label htmlFor="password">Password:</label>
+        <FontAwesomeIcon
+          icon={faCheck}
+          className={validPass ? "valid" : "hide"}
+        />
+        <FontAwesomeIcon
+          icon={faTimes}
+          className={validPass || !password ? "hide" : "invalid"}
+        />
+        <input
+          type="password"
+          id="password"
+          onChange={(event) => setPassword(event.target.value)}
+          value={password}
+          required
+          aria-invalid={validPass ? "false" : "true"}
+          aria-describedby="pwdnote"
+          onFocus={() => setPassFocus(true)}
+          onBlur={() => setPassFocus(false)}
+        />
         <br />
-        <label htmlFor="confirm_pwd">
-          Confirm Password:
-          <FontAwesomeIcon
-            icon={faCheck}
-            className={validEntry && reEntry ? "valid" : "hide"}
-          />
-          <FontAwesomeIcon
-            icon={faTimes}
-            className={validEntry || !reEntry ? "hide" : "invalid"}
-          />
-          <input
-            type="password"
-            className="confirm_pwd"
-            onChange={(event) => setReEntry(event.target.value)}
-            value={reEntry}
-            required
-            aria-invalid={validEntry ? "false" : "true"}
-            aria-describedby="confirmnote"
-            onFocus={() => setReEntryFocus(true)}
-            onBlur={() => setReEntryFocus(false)}
-          />
-        </label>
+        <label htmlFor="confirm_pwd">Confirm Password:</label>
+        <FontAwesomeIcon
+          icon={faCheck}
+          className={validEntry && reEntry ? "valid" : "hide"}
+        />
+        <FontAwesomeIcon
+          icon={faTimes}
+          className={validEntry || !reEntry ? "hide" : "invalid"}
+        />
+        <input
+          type="password"
+          className="confirm_pwd"
+          onChange={(event) => setReEntry(event.target.value)}
+          value={reEntry}
+          required
+          aria-invalid={validEntry ? "false" : "true"}
+          aria-describedby="confirmnote"
+          onFocus={() => setReEntryFocus(true)}
+          onBlur={() => setReEntryFocus(false)}
+        />
         <br />
         <p
           id="confirmnote"

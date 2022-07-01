@@ -62,29 +62,25 @@ function UserLogin() {
         <h1>User Login</h1>
       </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            placeholder="username"
-            ref={userRef}
-            autoComplete="off"
-            onChange={(event) => setUsername(event.target.value)}
-            value={username}
-            required
-          />
-        </label>
+        <label>Username:</label>
+        <input
+          type="text"
+          placeholder="username"
+          ref={userRef}
+          autoComplete="off"
+          onChange={(event) => setUsername(event.target.value)}
+          value={username}
+          required
+        />
         <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            placeholder="password"
-            onChange={(event) => setPassword(event.target.value)}
-            value={password}
-            required
-          />
-        </label>
+        <label>Password:</label>
+        <input
+          type="password"
+          placeholder="password"
+          onChange={(event) => setPassword(event.target.value)}
+          value={password}
+          required
+        />
         <br />
         <input className="button" type="submit" name="Sign In" />
       </form>
