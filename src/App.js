@@ -4,6 +4,8 @@ import UserLogin from "./Components/UserLogin/UserLogin";
 import CreateUser from "./Components/CreateUser/CreateUser";
 import MyCalendar from "./Components/MyCalendar/MyCalendar";
 import Data from "./Components/Data/Data";
+import Nav from "./Components/Nav/Nav";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -11,9 +13,13 @@ function App() {
       <Routes>
         <Route path="/login" element={<UserLogin />} />
         <Route path="/newuser" element={<CreateUser />} />
-        <Route path="/mycalendar" element={<MyCalendar />} />
-        <Route path="/adddata" element={<Data />} />
       </Routes>
+      <Nav />
+      <Routes>
+        <Route path="/mycalendar" element={<MyCalendar />} />
+        <Route path="/data" element={<Data />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
