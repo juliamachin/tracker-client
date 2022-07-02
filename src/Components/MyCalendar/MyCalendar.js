@@ -1,6 +1,7 @@
 import "./MyCalendar.css";
 import { useState } from "react";
 import Calendar from "react-calendar";
+import Moment from "react-moment";
 
 const MyCalendar = () => {
   const [date, setDate] = useState(new Date());
@@ -17,6 +18,22 @@ const MyCalendar = () => {
   return (
     <div className="calender">
       <h1>Calendar</h1>
+      <div>
+        <button onClick={addPeriod}>Add Period</button>
+        <Calendar onChange={setDate} value={date} selectRange={range} />
+      </div>
+      {date.length > 0 ? (
+        <p>
+          <span>Start:</span> {date[0].toDateString()}
+          &nbsp; to &nbsp;
+          <span>End:</span> {date[1].toDateString()}
+        </p>
+      ) : (
+        <p>
+          <span>Selected date:</span> {date.toDateString()}
+        </p>
+      )}
+      <form>
       <label for="cycle">Cycle Length : </label>
       <select
         onChange={(event) => setCycle(event.target.value)}
@@ -39,21 +56,21 @@ const MyCalendar = () => {
         <option value="34">34</option>
         <option value="35">35</option>
       </select>
-      <div>
-        <button onClick={addPeriod}>Add Period</button>
-        <Calendar onChange={setDate} value={date} selectRange={range} />
+      </form>
+      <div className="col-md-3 m-3 box ">
+        <p>Next Period</p>
+
+        <Moment format="Do MMMM YYYY" add={{ days: cycleLength - 1 }}>
+          {date}
+        </Moment>
       </div>
-      {date.length > 0 ? (
-        <p>
-          <span>Start:</span> {date[0].toDateString()}
-          &nbsp; to &nbsp;
-          <span>End:</span> {date[1].toDateString()}
-        </p>
-      ) : (
-        <p>
-          <span>Today's date:</span> {date.toDateString()}
-        </p>
-      )}
+      <div className="col-md-3 m-3 box ">
+        <p> Approximate Ovulation Day</p>
+
+        <Moment format="Do MMMM YYYY" add={{ days: cycleLength - 1 - 14 }}>
+          {date}
+        </Moment>
+      </div>
     </div>
   );
 };
