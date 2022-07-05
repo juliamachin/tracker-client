@@ -1,6 +1,6 @@
 import "./UserLogin.css";
-import { useRef, useState, useEffect, useContext } from "react";
-import AuthContext from "../../Context/AuthProvider";
+import { useRef, useState, useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 
 const LOGIN_URL = "/users/";
@@ -9,7 +9,7 @@ function UserLogin() {
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [valid, setValid] = useState(false);
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
   const userRef = useRef();
   const errRef = useRef();
   useEffect(() => {
@@ -46,6 +46,7 @@ function UserLogin() {
         setErrorMsg("Login Failed");
       }
       errRef.current.focus();
+
     }
   };
 
@@ -86,7 +87,7 @@ function UserLogin() {
       </form>
       <div>
         <p>Don't already have an account?</p>
-        <a href="http://localhost:3000/newuser">Sign Up</a>
+        <a href="http://localhost:3000/register">Sign Up</a>
       </div>
     </div>
   );

@@ -98,7 +98,7 @@
   background-color: #e6e6e6;
 }
 .react-calendar__tile--now {
-  background: -webkit-linear-gradient(
+  /* background: -webkit-linear-gradient(
     to right,
     rgb(80, 143, 226),
     rgb(108, 205, 238)
@@ -107,7 +107,8 @@
     to right,
     rgb(77, 146, 236),
     rgb(102, 198, 230)
-  ) !important;
+  ) !important; */
+  background-color: #757575 !important;
   color: #fff;
 }
 .react-calendar__tile--now:enabled:hover,
@@ -128,9 +129,16 @@
 }
 .react-calendar__tile--active:enabled:hover,
 .react-calendar__tile--active:enabled:focus {
-  background: -webkit-linear-gradient(to right, #fc4d50, #ff9966);
-  background: linear-gradient(to right, #fd5053, #ff9966);
-  color: #fff;
+  background: -webkit-linear-gradient(
+    to right,
+    rgb(80, 143, 226),
+    rgb(108, 205, 238)
+  ) !important;
+  background: linear-gradient(
+    to right,
+    rgb(77, 146, 236),
+    rgb(102, 198, 230)
+  ) !important;
 }
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
