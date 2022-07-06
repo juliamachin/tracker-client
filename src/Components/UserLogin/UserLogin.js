@@ -1,17 +1,24 @@
 import "./UserLogin.css";
-import { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
-const LOGIN_URL = "/users/";
+const LOGIN_URL = "/auth/";
 function UserLogin() {
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/mycalendar";
+
+  const userRef = useRef();
+  const errRef = useRef();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
-  const [valid, setValid] = useState(false);
-  const { setAuth } = useAuth();
-  const userRef = useRef();
-  const errRef = useRef();
+
   useEffect(() => {
     userRef.current.focus();
   }, []);
@@ -29,13 +36,14 @@ function UserLogin() {
           withCredentials: true,
         }
       );
-      console.log(JSON.stringify(response?.data));
-      const accessToken = response?.data?.accessToken;
+      // console.log(JSON.stringify(response?.data));
+      const accessToken = response?.data?.token;
       setAuth({ username, password, accessToken });
       setUsername("");
       setPassword("");
-      setValid(true);
+      navigate(from, { replace: true });
     } catch (error) {
+      console.log(error);
       if (!error?.response) {
         setErrorMsg("No Server Response");
       } else if (error.response?.status === 400) {
@@ -46,7 +54,6 @@ function UserLogin() {
         setErrorMsg("Login Failed");
       }
       errRef.current.focus();
-
     }
   };
 

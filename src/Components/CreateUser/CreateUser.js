@@ -1,5 +1,6 @@
 import "./CreateUser.css";
 import { useRef, useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   faCheck,
   faTimes,
@@ -13,6 +14,9 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = "/users/";
 
 const CreateUser = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
   const [username, setUsername] = useState("");
   const [validName, setValidName] = useState(false);
   const [userFocus, setUserFocus] = useState(false);
@@ -23,10 +27,11 @@ const CreateUser = () => {
   const [validEntry, setValidEntry] = useState(false);
   const [reEntryFocus, setReEntryFocus] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [valid, setValid] = useState(false);
+  // const [valid, setValid] = useState(false);
 
-  const userRef = useRef();
-  const errRef = useRef();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/mycalendar";
 
   useEffect(() => {
     userRef.current.focus();
@@ -68,10 +73,11 @@ const CreateUser = () => {
       );
 
       console.log(JSON.stringify(response?.data));
-      setValid(true);
+      // setValid(true);
       setUsername("");
       setPassword("");
       setReEntry("");
+      navigate(from, { replace: true });
     } catch (error) {
       if (!error?.response) {
         setErrorMsg("No Server Response");

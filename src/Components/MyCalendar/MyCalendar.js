@@ -2,6 +2,7 @@ import "./MyCalendar.css";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import Moment from "react-moment";
+import Links from '../Links/Links'
 import { format, parse, startOfWeek, getDay } from 'date-fns'
 import DatePicker from "react-datepicker";
 
@@ -18,6 +19,7 @@ const MyCalendar = () => {
 
   return (
     <div className="calender">
+      <Links />
       <div>
         <button onClick={addPeriod}>Add Period</button>
         <Calendar onChange={setDate} value={date} selectRange={range} />
