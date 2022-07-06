@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Button } from "reactstrap";
 
 const LOGIN_URL = "/auth/";
 function UserLogin() {
@@ -67,9 +68,9 @@ function UserLogin() {
         >
           {errorMsg}
         </p>
-        <h1>User Login</h1>
+        <h1>Sign In</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <label>Username:</label>
         <input
           type="text"
@@ -90,7 +91,7 @@ function UserLogin() {
           required
         />
         <br />
-        <input className="button" type="submit" name="Sign In" />
+        <Button>Login</Button>
       </form>
       <div>
         <p>Don't already have an account?</p>

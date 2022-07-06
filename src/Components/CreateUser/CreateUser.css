@@ -1,3 +1,33 @@
+.create-user {
+    width: 100%;
+    max-width: 420px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 1rem;
+}
+
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}
+
+input[type="text"],
+input[type="password"],
+button,
+textarea {
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+}
+
+
 .offscreen {
     position: absolute;
     left: -9999px;

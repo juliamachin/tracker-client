@@ -1,12 +1,18 @@
+import "./Data.css";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import Moment from "react-moment";
 import Links from "../Links/Links";
-
-import "./Data.css";
+import Switch from "react-switch";
 import { Form } from "reactstrap";
 
 const Data = () => {
+  const [checked, setChecked] = useState(false);
+
+  const toggle = (value) => {
+    return !value;
+  };
+
   return (
     <div className="data-container">
       <Links />
@@ -40,22 +46,15 @@ const Data = () => {
         <label>Menstruation</label>
         <br />
         <label>Light</label>
-        <input type="checkbox" value="light" />
+        <input type="checkbox" value="" />
         <label>Medium</label>
-        <input type="checkbox" value="medium" />
+        <input type="checkbox" value="" />
         <label>Heavy</label>
-        <input type="checkbox" value="heavy" />
-        <br />
-        <label class="toggle-switch-label" for="toggleSwitch">
-          Spotting
-        </label>
-        <input
-          type="checkbox"
-          class="toggle-switch-checkbox"
-          name="toggleSwitch"
-          id="toggleSwitch"
-        />
-        <br />
+        <input type="checkbox" value="" />
+        <div className="toggle">
+          <label>Spotting</label>
+          <Switch onChange={() => setChecked(toggle)} checked={checked} />
+        </div>
         <label>Symptoms</label>
         <select>
           <option value="">Acne</option>
@@ -73,13 +72,14 @@ const Data = () => {
           <option value="">Stomach ache</option>
           <option value="">Trouble sleeping</option>
           <option value="">Vomiting</option>
-          </select>
-          <br />
-          <button>Add</button>
-          <br />
-          <label>Journal</label>
-          <input type="textbox" />
+        </select>
+        <br />
+        <button>Add</button>
+        <br />
+        <label>Journal</label>
+        <input type="textbox" />
       </Form>
+      <button>Save</button>
     </div>
   );
 };

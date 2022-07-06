@@ -102,7 +102,7 @@ const CreateUser = () => {
         </p>
         <h1>Register</h1>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="register-form" onSubmit={handleSubmit}>
         <label htmlFor="username">New Username:</label>
         <FontAwesomeIcon
           icon={faCheck}
